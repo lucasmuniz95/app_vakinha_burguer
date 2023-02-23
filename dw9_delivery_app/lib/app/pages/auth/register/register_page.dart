@@ -124,7 +124,7 @@ class _RegisterPageState extends BaseState<RegisterPage, RegisterController> {
                           _nameEC.text, _emailEC.text, _passwordEC.text,);
                     }
                   },
-                  label: 'ENTRAR',
+                  label: 'CADASTRAR',
                   width: double.infinity,
                 ),
               ),

@@ -2,9 +2,11 @@
 import 'package:dw9_delivery_app/app/core/ui/extensions/formatter_extension.dart';
 import 'package:dw9_delivery_app/app/core/ui/helpers/size_extensions.dart';
 import 'package:dw9_delivery_app/app/core/ui/styles/text_styles.dart';
+import 'package:dw9_delivery_app/app/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dw9_delivery_app/app/dto/order_product_dto.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ShoppingBagWidget extends StatelessWidget {
@@ -17,17 +19,25 @@ class ShoppingBagWidget extends StatelessWidget {
 
   Future<void> _goOrder(BuildContext context) async {
     final navigator = Navigator.of(context);
+    final controller = context.read<HomeController>();
     final sp = await SharedPreferences.getInstance();
-    if (!sp.containsKey('acessToken')) {
+    if (!sp.containsKey('accessToken')) {
       final loginResult = await navigator.pushNamed('/auth/login');
+      if (loginResult == null || loginResult == false) {
+        return;
+      }
     }
+    final updateBag = await navigator.pushNamed('/order', arguments: bag);
+    controller.updateBag(updateBag as List<OrderProductDto>);
   }
 
-  
   @override
   Widget build(BuildContext context) {
-    final totalBag = bag
-        .fold<double>(0.0, (total, element) => element.totalPrice)
+    var totalBag = bag
+        .fold<double>(
+          0.0,
+          (total, element) => total += element.totalPrice,
+        )
         .currencyPTBR;
 
     return Container(
@@ -75,5 +85,4 @@ class ShoppingBagWidget extends StatelessWidget {
       ),
     );
   }
-
 }

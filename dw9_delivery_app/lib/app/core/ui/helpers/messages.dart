@@ -5,7 +5,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 mixin Messages<T extends StatefulWidget> on State<T> {
   void showError(String message) {
     showTopSnackBar(
-      Overlay.of(context)!,
+      Overlay.of(context),
       CustomSnackBar.error(
         message: message,
       ),
@@ -14,7 +14,7 @@ mixin Messages<T extends StatefulWidget> on State<T> {
 
   void showInfo(String message) {
     showTopSnackBar(
-      Overlay.of(context)!,
+      Overlay.of(context),
       CustomSnackBar.info(
         message: message,
       ),
@@ -23,7 +23,7 @@ mixin Messages<T extends StatefulWidget> on State<T> {
 
   void showSucess(String message) {
     showTopSnackBar(
-      Overlay.of(context)!,
+      Overlay.of(context),
       CustomSnackBar.success(
         message: message,
       ),
