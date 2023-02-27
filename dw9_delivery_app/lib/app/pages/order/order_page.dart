@@ -92,8 +92,10 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
           },
           sucess: () {
             hideLoader();
-            Navigator.of(context).popAndPushNamed('/order/completed',
-                result: <OrderProductDto>[]);
+            Navigator.of(context).popAndPushNamed(
+              '/order/completed',
+              result: <OrderProductDto>[],
+            );
           },
         );
       },
@@ -208,8 +210,10 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                           builder: (_, paymentTypeValidValue, child) {
                             return PaymentTypesField(
                               paymentTypes: paymentTypes,
-                              valueChanged: (value) => paymentTypeId = value,
-                              valid: true,
+                              valueChanged: (value) {
+                                paymentTypeId = value;
+                              },
+                              valid: paymentTypeValidValue,
                               valueSelected: paymentTypeId.toString(),
                             );
                           },

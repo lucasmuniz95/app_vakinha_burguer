@@ -83,8 +83,8 @@ class OrderController extends Cubit<OrderState> {
     await _orderRepository.saveOrder(
       OrderDto(
         products: state.orderProducts,
-        address: address.toString(),
-        document: document.toString(),
+        address: address,
+        document: document,
         paymentMethodId: paymentMethodId,
       ),
     );

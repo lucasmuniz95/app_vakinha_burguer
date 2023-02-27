@@ -18,8 +18,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends BaseState<LoginPage, LoginController> {
   final formKey = GlobalKey<FormState>();
-  final emailEc = TextEditingController(text: 'lucas@lucas.com.br');
-  final passwordEC = TextEditingController(text: '123456');
+  final emailEc = TextEditingController();
+  final passwordEC = TextEditingController();
 
   @override
   void dispose() {
@@ -57,57 +57,58 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Form(
-                  key: formKey,
+                    key: formKey,
                     child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Login',
-                      style: context.textStyles.textTitle,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'E-mail',
-                      ),
-                      controller: emailEc,
-                      validator: Validatorless.multiple([
-                        Validatorless.required('E-mail obrigatório'),
-                        Validatorless.email('E-mail inválido'),
-                      ]),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Senha',
-                      ),
-                      controller: passwordEC,
-                      validator: Validatorless.required('Senha obrigatória'),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Center(
-                      child: DeliveryButton(
-                        onPressed: () {
-                          final valid =
-                              formKey.currentState?.validate() ?? false;
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Login',
+                          style: context.textStyles.textTitle,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: 'E-mail',
+                          ),
+                          controller: emailEc,
+                          validator: Validatorless.multiple([
+                            Validatorless.required('E-mail obrigatório'),
+                            Validatorless.email('E-mail inválido'),
+                          ]),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            labelText: 'Senha',
+                          ),
+                          controller: passwordEC,
+                          validator:
+                              Validatorless.required('Senha obrigatória'),
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        Center(
+                          child: DeliveryButton(
+                            onPressed: () {
+                              final valid =
+                                  formKey.currentState?.validate() ?? false;
 
-                          if (valid) {
-                            controller.login(emailEc.text, passwordEC.text);
-                          }
-                        },
-                        width: double.infinity,
-                        label: 'ENTRAR',
-                      ),
-                    )
-                  ],
-                )),
+                              if (valid) {
+                                controller.login(emailEc.text, passwordEC.text);
+                              }
+                            },
+                            width: double.infinity,
+                            label: 'ENTRAR',
+                          ),
+                        )
+                      ],
+                    )),
               ),
             ),
             SliverFillRemaining(

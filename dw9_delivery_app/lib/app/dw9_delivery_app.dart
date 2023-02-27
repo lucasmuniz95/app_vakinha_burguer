@@ -24,6 +24,7 @@ class Dw9DeliveryApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Delivery App',
         theme: ThemeConfig.theme,
+        navigatorKey: _navKey,
         routes: {
           '/': (context) => const SplashPage(),
           '/home': (context) => HomeRouter.page,

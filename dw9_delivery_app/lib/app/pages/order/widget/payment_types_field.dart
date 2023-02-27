@@ -63,14 +63,15 @@ class PaymentTypesField extends StatelessWidget {
                       ),
                     ),
                     Visibility(
+                        visible: !valid,
                         child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        'Selecione uma forma de pagamento',
-                        style: context.textStyles.textRegular
-                            .copyWith(fontSize: 13, color: Colors.red),
-                      ),
-                    ))
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Selecione uma forma de pagamento',
+                            style: context.textStyles.textRegular
+                                .copyWith(fontSize: 13, color: Colors.red),
+                          ),
+                        ))
                   ],
                 ),
               );
@@ -83,7 +84,7 @@ class PaymentTypesField extends StatelessWidget {
               value: (index, item) => item['value'] ?? '',
               group: (index, item) => 'Formas de Pagamento',
             ),
-            choiceType: S2ChoiceType.chips,
+            choiceType: S2ChoiceType.radios,
             choiceGrouped: true,
             modalFilter: false,
             placeholder: '',

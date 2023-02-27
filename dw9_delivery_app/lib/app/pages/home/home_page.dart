@@ -5,6 +5,7 @@ import 'package:dw9_delivery_app/app/pages/home/home_state.dart';
 import 'package:dw9_delivery_app/app/pages/home/widgets/shopping_bag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/ui/config/base_state/base_state.dart';
 
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends BaseState<HomePage, HomeController> {
   @override
   onReady() {
+    //SharedPreferences.getInstance().then((value) => value.clear());
     controller.loadProducts();
   }
 

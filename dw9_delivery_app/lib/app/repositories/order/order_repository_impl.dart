@@ -41,6 +41,7 @@ class OrderRepositoryImpl implements OrderRepository {
             .toList(),
         'user_id': '#userAuthRef',
         'address': order.address,
+        'CPF': order.document,
         'payment_method_id': order.paymentMethodId,
       });
     } on DioError catch (e, s) {
